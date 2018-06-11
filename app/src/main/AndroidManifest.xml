@@ -10,10 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SignInSignOutActivity">
-
         </activity>
-        <activity android:name=".FitHistoryActivity">
-
+        <activity android:name=".ReadFitHistoryActivity">
         </activity>
         <activity android:name=".RecordingActivity">
         </activity>
@@ -23,6 +21,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".InsertFitHistoryActivity">
         </activity>
     </application>
 

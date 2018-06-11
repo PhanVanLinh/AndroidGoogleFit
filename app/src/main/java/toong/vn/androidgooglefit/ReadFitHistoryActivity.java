@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 import toong.vn.androidgooglefit.util.Constant;
 import toong.vn.androidgooglefit.util.DateTimeUtils;
 
-public class FitHistoryActivity extends AppCompatActivity {
+public class ReadFitHistoryActivity extends AppCompatActivity {
     int GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 101;
 
     @Override
@@ -105,7 +105,7 @@ public class FitHistoryActivity extends AppCompatActivity {
                     + "  End: "
                     + DateTimeUtils.format(dp.getEndTime(TimeUnit.MILLISECONDS)));
             for (Field field : dp.getDataType().getFields()) {
-                Log.i(Constant.TAG, "Field: " + field.getName() + " Value: " + dp.getValue(field));
+                Log.i(Constant.TAG, "Field:" + field.getName() + " Value:" + dp.getValue(field));
             }
         }
     }
