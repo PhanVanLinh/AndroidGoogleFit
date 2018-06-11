@@ -15,6 +15,7 @@ import com.google.android.gms.fitness.data.Subscription;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import java.util.List;
+import toong.vn.androidgooglefit.util.Constant;
 
 public class RecordingActivity extends AppCompatActivity {
     int GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 101;
@@ -81,6 +82,7 @@ public class RecordingActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<List<Subscription>>() {
                     @Override
                     public void onSuccess(List<Subscription> subscriptions) {
+                        Log.i(Constant.TAG, "List subscription size: " + subscriptions.size());
                         for (Subscription sc : subscriptions) {
                             DataType dt = sc.getDataType();
                             Log.i(Constant.TAG, "Active subscription for data type: " + dt.getName());

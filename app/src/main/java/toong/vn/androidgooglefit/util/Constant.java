@@ -1,4 +1,4 @@
-package toong.vn.androidgooglefit;
+package toong.vn.androidgooglefit.util;
 
 /**
  * Created by PhanVanLinh on 11/06/2018.

@@ -21,6 +21,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+import toong.vn.androidgooglefit.util.Constant;
+import toong.vn.androidgooglefit.util.DateTimeUtils;
 
 public class FitHistoryActivity extends AppCompatActivity {
     int GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 101;

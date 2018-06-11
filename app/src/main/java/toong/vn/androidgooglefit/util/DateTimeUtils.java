@@ -1,4 +1,4 @@
-package toong.vn.androidgooglefit;
+package toong.vn.androidgooglefit.util;
 
 import java.text.SimpleDateFormat;
 
