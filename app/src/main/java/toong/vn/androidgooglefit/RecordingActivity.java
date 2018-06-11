@@ -17,7 +17,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import java.util.List;
 
 public class RecordingActivity extends AppCompatActivity {
-    String TAG = getClass().getSimpleName();
     int GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 101;
 
     @Override
@@ -65,13 +64,13 @@ public class RecordingActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.i(TAG, "Successfully subscribed!");
+                        Log.i(Constant.TAG, "Successfully subscribed!");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.i(TAG, "There was a problem subscribing.");
+                        Log.i(Constant.TAG, "There was a problem subscribing.");
                     }
                 });
     }
@@ -84,7 +83,7 @@ public class RecordingActivity extends AppCompatActivity {
                     public void onSuccess(List<Subscription> subscriptions) {
                         for (Subscription sc : subscriptions) {
                             DataType dt = sc.getDataType();
-                            Log.i(TAG, "Active subscription for data type: " + dt.getName());
+                            Log.i(Constant.TAG, "Active subscription for data type: " + dt.getName());
                         }
                     }
                 });

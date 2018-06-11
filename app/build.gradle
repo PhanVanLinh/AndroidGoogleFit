@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
   compileSdkVersion 26
-  buildToolsVersion "26.0.0"
   defaultConfig {
     applicationId "toong.vn.androidgooglefit"
     minSdkVersion 19
@@ -21,12 +20,14 @@ android {
 
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
-  compile 'com.android.support.constraint:constraint-layout:1.1.0'
   androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
     exclude group: 'com.android.support', module: 'support-annotations'
   })
-  compile 'com.google.android.gms:play-services-fitness:11.6.0'
-  compile 'com.google.android.gms:play-services-auth:11.6.0'
-  compile 'com.android.support:appcompat-v7:26.+'
+  implementation 'com.google.android.gms:play-services-fitness:11.6.0'
+  implementation 'com.google.android.gms:play-services-auth:11.6.0'
+  implementation 'com.android.support:appcompat-v7:26.1.0'
+  implementation 'com.google.firebase:firebase-core:11.6.0'
+  implementation 'com.google.firebase:firebase-messaging:11.6.0'
+  implementation 'com.crashlytics.sdk.android:crashlytics:2.9.3'
   testCompile 'junit:junit:4.12'
 }

@@ -17,7 +17,6 @@ import com.google.android.gms.tasks.Task;
  * Document: https://developers.google.com/identity/sign-in/android/sign-in
  */
 public class GoogleSignInActivity extends AppCompatActivity {
-    private String TAG = getClass().getSimpleName();
     private int RC_SIGN_IN = 101;
 
     @Override
@@ -47,6 +46,7 @@ public class GoogleSignInActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+
             handleSignInResult(task);
         }
     }
@@ -54,7 +54,7 @@ public class GoogleSignInActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            Log.i(TAG, account.getEmail());
+            Log.i(Constant.TAG, account.getEmail());
         } catch (ApiException e) {
             Toast.makeText(GoogleSignInActivity.this,
                     "signInResult:failed code=" + e.getStatusCode(), Toast.LENGTH_SHORT).show();

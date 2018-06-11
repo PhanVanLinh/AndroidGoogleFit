@@ -24,7 +24,6 @@ import com.google.android.gms.fitness.result.DataSourcesResult;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
-    private String TAG = "MainActivity";
     private GoogleApiClient mClient = null;
 
     @Override
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                     .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
                         @Override
                         public void onConnected(Bundle bundle) {
-                            Log.i(TAG, "Connected!!!");
+                            Log.i(Constant.TAG, "Connected!!!");
                             // Now you can make calls to the Fitness APIs.
                             findFitnessDataSources();
                         }
@@ -56,17 +55,17 @@ public class MainActivity extends AppCompatActivity {
                             // If your connection to the sensor gets lost at some point,
                             // you'll be able to determine the reason and react to it here.
                             if (i == GoogleApiClient.ConnectionCallbacks.CAUSE_NETWORK_LOST) {
-                                Log.i(TAG, "Connection lost.  Cause: Network Lost.");
+                                Log.i(Constant.TAG, "Connection lost.  Cause: Network Lost.");
                             } else if (i
                                     == GoogleApiClient.ConnectionCallbacks.CAUSE_SERVICE_DISCONNECTED) {
-                                Log.i(TAG, "Connection lost.  Reason: Service Disconnected");
+                                Log.i(Constant.TAG, "Connection lost.  Reason: Service Disconnected");
                             }
                         }
                     })
                     .enableAutoManage(this, 0, new GoogleApiClient.OnConnectionFailedListener() {
                         @Override
                         public void onConnectionFailed(ConnectionResult result) {
-                            Log.i(TAG, "Google Play services connection failed. Cause: "
+                            Log.i(Constant.TAG, "Google Play services connection failed. Cause: "
                                     + result.toString());
                             Toast.makeText(MainActivity.this,
                                     "Exception while connecting to Google Play services: ",
@@ -89,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                         for (DataSource dataSource : dataSourcesResult.getDataSources()) {
                             if (DataType.TYPE_STEP_COUNT_CUMULATIVE.equals(
                                     dataSource.getDataType())) {
-                                Log.i(TAG, "registerFitnessDataListener");
+                                Log.i(Constant.TAG, "registerFitnessDataListener");
                                 registerFitnessDataListener(dataSource,
                                         DataType.TYPE_STEP_COUNT_CUMULATIVE);
                             }
