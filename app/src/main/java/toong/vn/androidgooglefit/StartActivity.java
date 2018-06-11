@@ -12,10 +12,10 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        findViewById(R.id.button_sign_in).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button_sign_in_sign_out).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(GoogleSignInActivity.class);
+                startActivity(SignInSignOutActivity.class);
             }
         });
 

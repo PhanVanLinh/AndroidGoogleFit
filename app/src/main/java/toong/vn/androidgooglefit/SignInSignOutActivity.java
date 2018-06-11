@@ -16,7 +16,7 @@ import com.google.android.gms.tasks.Task;
 /**
  * Document: https://developers.google.com/identity/sign-in/android/sign-in
  */
-public class GoogleSignInActivity extends AppCompatActivity {
+public class SignInSignOutActivity extends AppCompatActivity {
     private int RC_SIGN_IN = 101;
 
     @Override
@@ -24,21 +24,36 @@ public class GoogleSignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_sign_in);
 
-        findViewById(R.id.button_sign_in).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button_sign_in_sign_out).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signIn();
             }
         });
+
+        findViewById(R.id.button_sign_out).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut();
+            }
+        });
+    }
+
+    private GoogleSignInOptions getSignInOptions() {
+        return new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail()
+                .build();
     }
 
     private void signIn() {
-        GoogleSignInOptions gso =
-                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail()
-                        .build();
-        GoogleSignInClient signInClient = GoogleSignIn.getClient(this, gso);
+        GoogleSignInClient signInClient = GoogleSignIn.getClient(this, getSignInOptions());
         Intent signInIntent = signInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    private void signOut() {
+        GoogleSignInClient signInClient = GoogleSignIn.getClient(this, getSignInOptions());
+        signInClient.signOut();
+        Log.i(Constant.TAG, "signOut ");
     }
 
     @Override
@@ -46,7 +61,6 @@ public class GoogleSignInActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-
             handleSignInResult(task);
         }
     }
@@ -54,9 +68,9 @@ public class GoogleSignInActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            Log.i(Constant.TAG, account.getEmail());
+            Log.i(Constant.TAG, "signInResult: email: "+account.getEmail());
         } catch (ApiException e) {
-            Toast.makeText(GoogleSignInActivity.this,
+            Toast.makeText(SignInSignOutActivity.this,
                     "signInResult:failed code=" + e.getStatusCode(), Toast.LENGTH_SHORT).show();
         }
     }

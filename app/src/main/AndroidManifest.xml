@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
         </activity>
-        <activity android:name=".GoogleSignInActivity">
+        <activity android:name=".SignInSignOutActivity">
 
         </activity>
         <activity android:name=".FitHistoryActivity">

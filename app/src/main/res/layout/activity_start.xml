@@ -7,10 +7,10 @@
     >
 
     <Button
-        android:id="@+id/button_sign_in"
+        android:id="@+id/button_sign_in_sign_out"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign In"
+        android:text="Sign In/Sign Out"
         />
 
     <Button
