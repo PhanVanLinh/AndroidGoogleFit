@@ -47,7 +47,6 @@ public class ReadFitHistoryActivity extends AppCompatActivity {
     private void requestPermissions() {
         FitnessOptions fitnessOptions = FitnessOptions.builder()
                 .addDataType(DataType.TYPE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_READ)
-                .addDataType(DataType.AGGREGATE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_READ)
                 .build();
         if (!GoogleSignIn.hasPermissions(GoogleSignIn.getLastSignedInAccount(this),
                 fitnessOptions)) {
@@ -99,6 +98,7 @@ public class ReadFitHistoryActivity extends AppCompatActivity {
             return;
         }
         for (DataPoint dp : dataSet.getDataPoints()) {
+            Log.i(Constant.TAG, "Origin type: " + dp.getOriginalDataSource().getDataType().getName());
             Log.i(Constant.TAG, "Type: " + dp.getDataType().getName());
             Log.i(Constant.TAG, "Start: "
                     + DateTimeUtils.format(dp.getStartTime(TimeUnit.MILLISECONDS))

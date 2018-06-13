@@ -47,7 +47,6 @@ public class RecordingActivity extends AppCompatActivity {
     private void requestPermissions() {
         FitnessOptions fitnessOptions = FitnessOptions.builder()
                 .addDataType(DataType.TYPE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_READ)
-                .addDataType(DataType.AGGREGATE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_READ)
                 .build();
         if (!GoogleSignIn.hasPermissions(GoogleSignIn.getLastSignedInAccount(this),
                 fitnessOptions)) {
