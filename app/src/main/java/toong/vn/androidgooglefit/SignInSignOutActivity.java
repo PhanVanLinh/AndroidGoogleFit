@@ -70,9 +70,20 @@ public class SignInSignOutActivity extends AppCompatActivity {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             Log.i(Constant.TAG, "signInResult: email: "+account.getEmail());
+            Log.i(Constant.TAG, "signInResult: email: "+account.getEmail());
         } catch (ApiException e) {
+            // GooglePlayService Disable => error code 12500 (GoogleSignInStatusCodes.html#SIGN_IN_FAILED)
+            // GooglePlayService OutUpdate => error code 12500 (GoogleSignInStatusCodes.html#SIGN_IN_FAILED)
+            // No Internet connection => still able to sign in (no error throw)
+
+            // Service Missing: error 8 (CommonStatusCodes#INTERNAL_ERROR)
+            // API unavailable => look like when don't need to  handle (consider API not connect)
+            // Start resolution => look like when don't need to  handle
+            //
             Toast.makeText(SignInSignOutActivity.this,
-                    "signInResult:failed code=" + e.getStatusCode(), Toast.LENGTH_SHORT).show();
+                    "signInResult:failed code = " + e.getStatusCode(), Toast.LENGTH_SHORT).show();
         }
     }
+
+    // onConnectionFailed
 }

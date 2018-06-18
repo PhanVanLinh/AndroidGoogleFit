@@ -95,6 +95,8 @@ public class RecordingActivity extends AppCompatActivity {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == GOOGLE_FIT_PERMISSIONS_REQUEST_CODE) {
                 accessGoogleFit();
+            } else {
+
             }
         }
     }

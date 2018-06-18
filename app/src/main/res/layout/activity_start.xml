@@ -34,4 +34,11 @@
         android:text="Insert/Update History"
         />
 
+    <Button
+        android:id="@+id/button_register_sensor_api"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register Sensor API"
+        />
+
 </LinearLayout>

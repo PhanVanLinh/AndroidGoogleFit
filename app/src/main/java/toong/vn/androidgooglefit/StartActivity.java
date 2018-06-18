@@ -40,10 +40,10 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.button_insert_or_update).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button_register_sensor_api).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(InsertFitHistoryActivity.class);
+                startActivity(SensorActivity.class);
             }
         });
     }
