@@ -10,6 +10,7 @@ import android.view.View;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.fitness.Fitness;
 import com.google.android.gms.fitness.FitnessOptions;
+import com.google.android.gms.fitness.data.DataSource;
 import com.google.android.gms.fitness.data.DataType;
 import com.google.android.gms.fitness.data.Subscription;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -59,8 +60,16 @@ public class RecordingActivity extends AppCompatActivity {
     }
 
     private void record() {
+        DataSource ESTIMATED_STEP_DELTAS =
+                new DataSource.Builder().setDataType(DataType.TYPE_STEP_COUNT_DELTA)
+                        .setType(DataSource.TYPE_DERIVED)
+                        .setStreamName("estimated_steps")
+                        .setName("A")
+                        .setAppPackageName(this)
+                        .build();
+
         Fitness.getRecordingClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                .subscribe(DataType.TYPE_STEP_COUNT_DELTA)
+                .subscribe(ESTIMATED_STEP_DELTAS)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -77,14 +86,17 @@ public class RecordingActivity extends AppCompatActivity {
 
     private void listRecord() {
         Fitness.getRecordingClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                .listSubscriptions(DataType.TYPE_STEP_COUNT_DELTA)
+                .listSubscriptions()
                 .addOnSuccessListener(new OnSuccessListener<List<Subscription>>() {
                     @Override
                     public void onSuccess(List<Subscription> subscriptions) {
                         Log.i(Constant.TAG, "List subscription size: " + subscriptions.size());
                         for (Subscription sc : subscriptions) {
                             DataType dt = sc.getDataType();
-                            Log.i(Constant.TAG, "Active subscription for data type: " + dt.getName());
+
+                            Log.i(Constant.TAG,
+                                    "Active subscription for data type: " + (dt == null ? "null"
+                                            : dt.getName()));
                         }
                     }
                 });
